@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="lux"] {
+  color-scheme: dark;
+}
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+  --muted: 243 244 246;
+  --card: 255 255 255;
+  --border: 229 231 235;
+  --accent: 14 165 233;
+  --accentFg: 255 255 255;
+
+  --radius: 14px;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+html[data-theme="minimal"] {
+  --bg: 255 255 255;
+  --fg: 15 23 42;
+  --muted: 248 250 252;
+  --card: 255 255 255;
+  --border: 226 232 240;
+  --accent: 15 23 42;
+  --accentFg: 255 255 255;
+
+  --radius: 16px;
+  --shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+html[data-theme="modern"] {
+  --bg: 248 250 252;
+  --fg: 2 6 23;
+  --muted: 241 245 249;
+  --card: 255 255 255;
+  --border: 226 232 240;
+  --accent: 99 102 241;
+  --accentFg: 255 255 255;
+
+  --radius: 14px;
+  --shadow: 0 14px 35px rgba(2, 6, 23, 0.1);
+}
+
+html[data-theme="lux"] {
+  --bg: 6 8 14;
+  --fg: 243 244 246;
+  --muted: 17 24 39;
+  --card: 10 13 20;
+  --border: 51 65 85;
+  --accent: 245 158 11;
+  --accentFg: 10 13 20;
+
+  --radius: 18px;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  --font: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  min-height: 100vh;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font);
+}

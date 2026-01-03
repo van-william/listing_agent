@@ -9,7 +9,14 @@ export default function ListingsPage() {
       <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 360px", gap: 14, alignItems: "start" }}>
         <Filters />
 
-        <section style={{ background: "white", border: "1px solid #eaeaea", borderRadius: 14, padding: 14 }}>
+        <section
+          style={{
+            background: "rgb(var(--card))",
+            border: "1px solid rgb(var(--border))",
+            borderRadius: "var(--radius)",
+            padding: 14
+          }}
+        >
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
             <h2 style={{ margin: 0 }}>Ranked results</h2>
             <div style={{ opacity: 0.7, fontSize: 13 }}>Mock data • {mockListings.length} listings</div>
@@ -18,7 +25,13 @@ export default function ListingsPage() {
           <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
             {mockListings.map((l) => (
               <Link key={l.id} href={`/demo/listings/${l.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-                <div style={{ border: "1px solid #efefef", borderRadius: 14, padding: 12 }}>
+                <div
+                  style={{
+                    border: "1px solid rgb(var(--border))",
+                    borderRadius: "var(--radius)",
+                    padding: 12
+                  }}
+                >
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
                     <div>
                       <div style={{ fontWeight: 750 }}>{l.address}</div>
@@ -31,7 +44,18 @@ export default function ListingsPage() {
                   </div>
                   <div style={{ marginTop: 8, display: "flex", gap: 6, flexWrap: "wrap" }}>
                     {l.highlights.map((h) => (
-                      <span key={h} style={{ fontSize: 12, padding: "4px 8px", borderRadius: 999, border: "1px solid #eee", background: "#fcfcfc" }}>{h}</span>
+                      <span
+                        key={h}
+                        style={{
+                          fontSize: 12,
+                          padding: "4px 8px",
+                          borderRadius: 999,
+                          border: "1px solid rgb(var(--border))",
+                          background: "rgb(var(--muted))"
+                        }}
+                      >
+                        {h}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -63,7 +87,14 @@ function TopNav() {
 
 function Filters() {
   return (
-    <aside style={{ background: "white", border: "1px solid #eaeaea", borderRadius: 14, padding: 14 }}>
+    <aside
+      style={{
+        background: "rgb(var(--card))",
+        border: "1px solid rgb(var(--border))",
+        borderRadius: "var(--radius)",
+        padding: 14
+      }}
+    >
       <div style={{ fontWeight: 800, marginBottom: 8 }}>Filters (stub)</div>
       <div style={{ fontSize: 13, opacity: 0.8, lineHeight: 1.5 }}>
         In MVP we’ll implement these as real query params backed by Postgres/PostGIS:
@@ -82,14 +113,37 @@ function Filters() {
 function Aside() {
   return (
     <aside style={{ display: "grid", gap: 12 }}>
-      <div style={{ background: "white", border: "1px solid #eaeaea", borderRadius: 14, padding: 14 }}>
+      <div
+        style={{
+          background: "rgb(var(--card))",
+          border: "1px solid rgb(var(--border))",
+          borderRadius: "var(--radius)",
+          padding: 14
+        }}
+      >
         <div style={{ fontWeight: 800, marginBottom: 6 }}>Map (placeholder)</div>
-        <div style={{ height: 220, borderRadius: 12, border: "1px dashed #ddd", display: "grid", placeItems: "center", opacity: 0.7 }}>
+        <div
+          style={{
+            height: 220,
+            borderRadius: 12,
+            border: "1px dashed rgb(var(--border))",
+            display: "grid",
+            placeItems: "center",
+            opacity: 0.7
+          }}
+        >
           Map pins + draw area
         </div>
       </div>
 
-      <div style={{ background: "white", border: "1px solid #eaeaea", borderRadius: 14, padding: 14 }}>
+      <div
+        style={{
+          background: "rgb(var(--card))",
+          border: "1px solid rgb(var(--border))",
+          borderRadius: "var(--radius)",
+          padding: 14
+        }}
+      >
         <div style={{ fontWeight: 800, marginBottom: 6 }}>Advisor (demo)</div>
         <div style={{ fontSize: 13, opacity: 0.8, lineHeight: 1.5 }}>
           Ask: “Find me a 2 bed under $650k near Brown Line, quiet.”
@@ -104,6 +158,23 @@ function Aside() {
 
 function btn(kind: "solid" | "ghost"): React.CSSProperties {
   return kind === "solid"
-    ? { padding: "10px 12px", borderRadius: 10, background: "#111", color: "white", textDecoration: "none", fontWeight: 700, fontSize: 13 }
-    : { padding: "10px 12px", borderRadius: 10, border: "1px solid #eaeaea", background: "white", color: "#111", textDecoration: "none", fontWeight: 700, fontSize: 13 };
+    ? {
+        padding: "10px 12px",
+        borderRadius: 10,
+        background: "rgb(var(--accent))",
+        color: "rgb(var(--accentFg))",
+        textDecoration: "none",
+        fontWeight: 700,
+        fontSize: 13
+      }
+    : {
+        padding: "10px 12px",
+        borderRadius: 10,
+        border: "1px solid rgb(var(--border))",
+        background: "rgb(var(--card))",
+        color: "rgb(var(--fg))",
+        textDecoration: "none",
+        fontWeight: 700,
+        fontSize: 13
+      };
 }

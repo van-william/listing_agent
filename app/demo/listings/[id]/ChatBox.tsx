@@ -38,7 +38,14 @@ export default function ChatBox({ listingId }: ChatBoxProps) {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          style={{ flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #eaeaea" }}
+          style={{
+            flex: 1,
+            padding: "10px 12px",
+            borderRadius: 10,
+            border: "1px solid rgb(var(--border))",
+            background: "rgb(var(--card))",
+            color: "rgb(var(--fg))"
+          }}
         />
         <button
           type="submit"
@@ -46,8 +53,8 @@ export default function ChatBox({ listingId }: ChatBoxProps) {
           style={{
             padding: "10px 12px",
             borderRadius: 10,
-            background: "#111",
-            color: "white",
+            background: "rgb(var(--accent))",
+            color: "rgb(var(--accentFg))",
             border: "none",
             fontWeight: 800,
             opacity: isLoading ? 0.7 : 1,
@@ -62,8 +69,8 @@ export default function ChatBox({ listingId }: ChatBoxProps) {
           marginTop: 10,
           padding: 12,
           borderRadius: 12,
-          background: "#fafafa",
-          border: "1px solid #eee",
+          background: "rgb(var(--muted))",
+          border: "1px solid rgb(var(--border))",
           whiteSpace: "pre-wrap",
           fontSize: 12.5,
           lineHeight: 1.5
