@@ -2,6 +2,14 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { searchListings } from "@/lib/repliers";
 
+function normalizeStatus(value: string | null) {
+  if (!value) return "A";
+  const normalized = value.trim().toUpperCase();
+  if (normalized === "A" || normalized === "U") return normalized;
+  if (normalized === "ACTIVE") return "A";
+  return null;
+}
+
 export async function GET(req: Request) {
   const { userId } = await auth();
   if (!userId) {
@@ -13,12 +21,12 @@ export async function GET(req: Request) {
   try {
     const result = await searchListings({
       q: searchParams.get("q") || "",
-      city: searchParams.get("city") || "Chicago",
+      city: searchParams.get("city") || undefined,
       minPrice: searchParams.get("minPrice"),
       maxPrice: searchParams.get("maxPrice"),
       minBeds: searchParams.get("minBeds"),
       maxBeds: searchParams.get("maxBeds"),
-      status: searchParams.get("status") || "Active"
+      status: normalizeStatus(searchParams.get("status"))
     });
 
     return NextResponse.json(result);

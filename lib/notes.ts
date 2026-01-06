@@ -43,6 +43,22 @@ export async function fetchNotesByKeys(keys: string[], limit = 8) {
   return (data || []) as RealtorNoteSummary[];
 }
 
+export async function fetchAllNotes(limit = 50) {
+  const supabase = createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from("realtor_notes")
+    .select("id, scope, content, listing_key, building_key, neighborhood_key, tags, created_at, note_vector")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (error) throw new Error(error.message);
+  return (data || []).map((note) => ({
+    ...note,
+    has_embedding: note.note_vector != null
+  })) as Array<RealtorNoteSummary & { has_embedding?: boolean }>;
+}
+
 export async function insertNote(input: CreateNoteInput) {
   const supabase = createSupabaseServerClient();
   const keys = buildMatchKeys({

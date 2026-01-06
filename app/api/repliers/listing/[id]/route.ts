@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { getListingById } from "@/lib/repliers";
+import { getListingDetailById } from "@/lib/repliers";
 
 export async function GET(
   _req: Request,
@@ -12,7 +12,7 @@ export async function GET(
   }
 
   try {
-    const listing = await getListingById(params.id);
+    const listing = await getListingDetailById(params.id);
     return NextResponse.json({ listing });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Listing fetch failed";

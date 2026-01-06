@@ -5,7 +5,7 @@ export default function Page() {
     <main style={{ maxWidth: 980, margin: "0 auto", padding: 24 }}>
       <header style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <div>
-          <div style={{ fontSize: 14, opacity: 0.7 }}>Demo</div>
+          <div style={{ fontSize: 14, opacity: 0.7 }}>Client Portal</div>
           <h1 style={{ margin: "6px 0" }}>Chicago Client-Only Listing Portal</h1>
           <p style={{ margin: 0, opacity: 0.8 }}>
             MLS-style search + realtor insight layer. Live data comes from Repliers.
@@ -26,7 +26,7 @@ export default function Page() {
             Open Live Listings
           </Link>
           <Link
-            href="/demo/listings"
+            href="/mobile-chat"
             style={{
               padding: "10px 14px",
               borderRadius: 10,
@@ -37,7 +37,7 @@ export default function Page() {
               fontWeight: 600
             }}
           >
-            Open Demo
+            Mobile Chat
           </Link>
         </div>
       </header>
@@ -45,15 +45,15 @@ export default function Page() {
       <section style={{ marginTop: 22, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
         <Card title="Why this works" items={[
           "Login-only portal (VOW-style gating)",
-          "Fast search: ingest MLS → your DB",
+          "Fast search: direct Repliers integration",
           "AI advisor uses MLS facts + realtor notes (RAG)",
-          "Saved searches + alerts to drive velocity"
+          "Mobile-first chat for on-the-go insights"
         ]} />
         <Card title="What you can click" items={[
           "Live listings search (Repliers)",
           "Listing detail + realtor notes",
-          "Advisor Q&A (RAG)",
-          "Admin notes (embeddings)"
+          "AI Mobile Chat (embeddings)",
+          "Admin dashboard (realtor only)"
         ]} />
       </section>
 
@@ -66,17 +66,15 @@ export default function Page() {
           border: "1px solid rgb(var(--border))"
         }}
       >
-        <h2 style={{ margin: "0 0 8px" }}>Next steps (to expand)</h2>
-        <ol style={{ margin: 0, paddingLeft: 18, opacity: 0.9 }}>
-          <li>Connect MLS feed (Chicago / MRED) under the realtor’s VOW agreement</li>
-          <li>Stand up Supabase tables + RLS with Clerk org gating</li>
-          <li>Ingestion worker for incremental updates + history</li>
-          <li>Replace mock advisor with Vercel AI SDK + embeddings</li>
-        </ol>
+        <h2 style={{ margin: "0 0 8px" }}>The Mobile-First Approach</h2>
+        <p style={{ opacity: 0.9, lineHeight: 1.6 }}>
+          Browse listings on your desktop via Zillow or our portal, then use the <strong>Mobile Chat</strong> to get the "scoop" from Matt Becker. 
+          The chat is trained on Matt&apos;s personal notes, building-level expertise, and neighborhood tribal knowledge.
+        </p>
       </section>
 
       <footer style={{ marginTop: 18, opacity: 0.7, fontSize: 13 }}>
-        Tip: Deploy this repo to Vercel as-is to show the flow. Then swap mock data → real ingestion.
+        Tip: Admins can manage notes and invitations in the <Link href="/admin">Admin Panel</Link>.
       </footer>
     </main>
   );
@@ -101,3 +99,4 @@ function Card({ title, items }: { title: string; items: string[] }) {
     </div>
   );
 }
+

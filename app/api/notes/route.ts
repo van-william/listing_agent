@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { buildMatchKeys } from "@/lib/keys";
 import { createEmbedding } from "@/lib/ai";
-import { fetchNotesByKeys, insertNote, type NoteScope } from "@/lib/notes";
+import { fetchNotesByKeys, fetchAllNotes, insertNote, type NoteScope } from "@/lib/notes";
+import { requireAdmin } from "@/lib/auth";
 
 const ALLOWED_SCOPES = new Set<NoteScope>([
   "global",
@@ -35,9 +36,15 @@ export async function GET(req: Request) {
   const buildingAddress = searchParams.get("buildingAddress");
   const neighborhood = searchParams.get("neighborhood");
   const limitParam = searchParams.get("limit");
-  const limit = Math.min(Math.max(Number(limitParam ?? 8), 1), 50);
+  const limit = Math.min(Math.max(Number(limitParam ?? 8), 1), 100);
 
   try {
+    // If no filters provided, return all notes (for admin panel)
+    if (!listingId && !buildingAddress && !neighborhood) {
+      const notes = await fetchAllNotes(limit);
+      return NextResponse.json({ notes });
+    }
+
     const keys = buildMatchKeys({ listingId, buildingAddress, neighborhood });
     const notes = await fetchNotesByKeys(keys, limit);
     return NextResponse.json({ notes });
@@ -51,6 +58,12 @@ export async function POST(req: Request) {
   const { userId, orgId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  
+  try {
+    await requireAdmin();
+  } catch {
+    return NextResponse.json({ error: "Admin access required" }, { status: 403 });
   }
 
   const body = await req.json().catch(() => ({}));

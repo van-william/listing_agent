@@ -108,6 +108,10 @@ We attach knowledge at 3 levels using stable keys:
 - `REPLIERS_API_URL` (server-only)
 - `REPLIERS_API_KEY` (server-only)
 
+### Zillow (Optional)
+- `ZILLOW_API_KEY` (server-only, optional - graceful degradation if not set)
+- `ZILLOW_API_URL` (server-only, defaults to HasData API)
+
 ### AI
 - `OPENAI_API_KEY` (server-only)
 - `OPENAI_EMBEDDING_MODEL` (e.g., `text-embedding-3-small`)

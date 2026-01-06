@@ -8,7 +8,6 @@ import {
   UserButton
 } from "@clerk/nextjs";
 import "./globals.css";
-import ThemeCycler from "@/components/ThemeCycler";
 
 export const metadata: Metadata = {
   title: "Chicago Client Portal (Demo)",
@@ -38,9 +37,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </SignedIn>
           </header>
           {children}
-          <div style={{ position: "fixed", right: 20, bottom: 20, zIndex: 50 }}>
-            <ThemeCycler />
-          </div>
         </body>
       </html>
     </ClerkProvider>

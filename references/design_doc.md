@@ -143,7 +143,7 @@ $$;
 
 4) Listings Search (Repliers)
 
-Server route handler (never expose Repliers key). Repliers expects `REPLIERS-API-KEY` header:
+Server route handler (never expose Repliers key). Repliers expects `REPLIERS-API-KEY` header. Note: `status` expects `A` or `U` (map \"Active\" to `A`).
 ```ts
 // app/api/repliers/search/route.ts
 import { NextResponse } from "next/server";
@@ -156,7 +156,7 @@ export async function GET(req: Request) {
     minPrice: searchParams.get("minPrice"),
     maxPrice: searchParams.get("maxPrice"),
     minBeds: searchParams.get("minBeds"),
-    city: searchParams.get("city") || "Chicago"
+    city: searchParams.get("city")
   });
   return NextResponse.json(result);
 }
